@@ -1,0 +1,41 @@
+# General config options (required)
+set mbox_type=Maildir
+set folder = ~/folder
+set spoolfile =+<accountName>/INBOX
+set header_cache=~/.cache/mutt
+set mail_check = 60
+set sendmail_wait = 1
+mailboxes = +<account1Name>/INBOX + <account2Name>/INBOX 
+set imap_check_subscribed
+
+# Set options
+set sendmail="/usr/bin/msmtp" # or other smtp client
+set use_from=yes
+set envelope_from=yes
+set realname="Real Name"
+set from=example@example.com
+set edit_headers=yes
+
+# Marco for switching between mailboxes
+macro index <f2> "<change-folder> /home/account1/Mail/INBOX" "Going to account1"
+macro index <f4> "<change-folder> /home/account1/Mail/INBOX" "Going to account2"
+
+# Keybinding for switching sender
+macro generic "<esc>1" ":set from=account1@example.com"
+macro generic "<esc>2" ":set from=account2@example.com"
+
+# Set VIM as editor:
+set editor="vim \"+set spell\" +/^$/ +9"
+
+# Some colouring:
+color status white magenta # status line
+color normal white black # background 
+color index white black default
+color normal default default
+
+# Reverse order for date and define time like a normal person would
+set sort=date-received 
+set sort_aux=last-date-received
+set sort=reverse-threads
+set date_format ="%Y-%m-%d at %H:%M:%S%Z"
+set index_format ="%4C %Z %[%b %d at %H:%M] %-15.15L (%4l) %s"
